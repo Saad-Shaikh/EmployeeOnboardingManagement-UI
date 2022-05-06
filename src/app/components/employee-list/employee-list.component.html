@@ -1,1 +1,17 @@
-<p>employee-list</p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-success">New Employee</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 list-group">
+            <a style="cursor: pointer;" class="list-group-item list-group-item-action"
+                *ngFor="let employee of employeeList">
+                <p class="mb-1">{{ employee.name }}</p>
+                <small>{{ employee.designation }}</small>
+            </a>
+        </div>
+    </div>
+</div>
