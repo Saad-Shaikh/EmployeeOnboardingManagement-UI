@@ -1,6 +1,7 @@
+import { Designation } from './../../enums/designation.enum';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { EmployeeList } from './../../models/employee-list.interface';
+import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 
 @Component({
     selector: 'employee-list',
@@ -8,7 +9,7 @@ import { EmployeeList } from './../../models/employee-list.interface';
 })
 export class EmployeeListComponent implements OnInit {
     @Input()
-    employeeList: EmployeeList[] = [];
+    employeeList: EmployeeListDTO[] = [];
 
     constructor() { }
 

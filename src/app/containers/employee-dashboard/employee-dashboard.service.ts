@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { EmployeeList } from './../../models/employee-list.interface';
-import { Designation } from 'src/app/enums/designation.enum';
+import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
+import { environment } from 'src/environments/environment';
+
+const EMPLOYEE_API: string = `${environment.apiBaseUrl}/employees`
 
 @Injectable({
     providedIn: 'root'
 })
 export class EmployeeDashboardService {
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
-    getEmployeeList(): EmployeeList[] {
-        return [
-            {
-                id: 1,
-                name: 'Employee 1',
-                designation: Designation.SOFTWARE_ENGINEER
-            },
-            {
-                id: 2,
-                name: 'Employee 2',
-                designation: Designation.SENIOR_SOFTWARE_ENGINEER
-            }
-        ];
+    getEmployeeList(): Observable<EmployeeListDTO[]> {
+        return this.http.get<EmployeeListDTO[]>(EMPLOYEE_API);
     }
 }

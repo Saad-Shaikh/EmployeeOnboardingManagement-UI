@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EmployeeList } from './../../models/employee-list.interface';
+import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDashboardService } from './employee-dashboard.service';
 
 @Component({
@@ -8,12 +8,16 @@ import { EmployeeDashboardService } from './employee-dashboard.service';
     templateUrl: './employee-dashboard.component.html'
 })
 export class EmployeeDashboardComponent implements OnInit {
-    employeeList: EmployeeList[] = [];
+    employeeList: EmployeeListDTO[] = [];
 
     constructor(private employeeDashboardService: EmployeeDashboardService) { }
 
     ngOnInit(): void {
-        this.employeeList = this.employeeDashboardService.getEmployeeList();
+        this.employeeDashboardService.getEmployeeList().subscribe(
+            (employees: EmployeeListDTO[]) => {
+                this.employeeList = employees
+            }
+        );
     }
 
 }
