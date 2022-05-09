@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 
 // containers
 import { EmployeeDashboardComponent } from './containers/employee-dashboard/employee-dashboard.component';
@@ -12,6 +11,7 @@ import { TeamDashboardComponent } from './containers/team-dashboard/team-dashboa
 import { TaskDashboardComponent } from './containers/task-dashboard/task-dashboard.component';
 
 // components
+import { HeaderComponent } from './components/header/header.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 
