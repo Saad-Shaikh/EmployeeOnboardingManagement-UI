@@ -1,7 +1,7 @@
-import { Designation } from './../../enums/designation.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
+import { Designation } from './../../enums/designation.enum';
 
 @Component({
     selector: 'employee-list',
