@@ -4,7 +4,8 @@ import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface'
 
 @Component({
     selector: 'employee-detail',
-    templateUrl: './employee-detail.component.html'
+    templateUrl: './employee-detail.component.html',
+    styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
     @Input()

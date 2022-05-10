@@ -1,4 +1,16 @@
+.navbar {
+    padding: 0;
+    background-color: #fc7061;
+}
+
+.navbar .navbar-nav .nav-link {
+    padding: 1em;
+    transition: all 0.5s;
+    color: #fcf4ef;
+}
+
 .navbar-nav .nav-item.active .nav-link,
 .navbar-nav .nav-item:hover .nav-link {
-    color: black;
+    color: #fc7061;
+    background-color: #fcf4ef;
 }

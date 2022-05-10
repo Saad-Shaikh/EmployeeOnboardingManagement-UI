@@ -5,7 +5,8 @@ import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 
 @Component({
     selector: 'employee-list',
-    templateUrl: './employee-list.component.html'
+    templateUrl: './employee-list.component.html',
+    styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
     @Input()

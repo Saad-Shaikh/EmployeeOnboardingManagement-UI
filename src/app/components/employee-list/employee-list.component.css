@@ -1,0 +1,14 @@
+.btn {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}
+
+.list-group-item {
+    color: #4c5464;
+    background-color: #fcf4ef;
+}
+
+.list-group-item .list-group-item-action .active {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}

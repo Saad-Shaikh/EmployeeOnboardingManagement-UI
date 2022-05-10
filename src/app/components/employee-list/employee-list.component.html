@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-success" style="margin-top: 10px;">New Employee</button>
+            <button class="btn" style="margin-top: 10px;">New Employee</button>
         </div>
     </div>
     <hr>
     <div class="row">
-        <div class="col-xs-12 list-group">
+        <div class="col-xs-12 list-group list-group-flush">
             <a style="cursor: pointer;" class="list-group-item list-group-item-action"
                 *ngFor="let employee of employeeList" [routerLink]="[employee.id]" routerLinkActive="active"
                 (click)="onEmployeeSelected(employee.id)">

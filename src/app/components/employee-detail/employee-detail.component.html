@@ -48,10 +48,10 @@
                         <tr>
                             <th scope="row">Mentors</th>
                             <td>
-                                <ul class="list-group">
-                                    <li class="list-group-item" *ngFor="let mentor of employee.mentors">
-                                        <span class="float-start">{{ mentor.name}}</span>
-                                        <span class="float-end">({{ mentor.designation }})</span>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item w-50" *ngFor="let mentor of employee.mentors">
+                                        <span>{{ mentor.name}}</span>
+                                        <!-- <span class="float-end">({{ mentor.designation }})</span> -->
                                     </li>
                                 </ul>
                             </td>
