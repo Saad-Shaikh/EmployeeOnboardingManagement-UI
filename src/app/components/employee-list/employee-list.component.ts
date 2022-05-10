@@ -15,6 +15,8 @@ export class EmployeeListComponent implements OnInit {
 
     @Output()
     employeeSelected: EventEmitter<number> = new EventEmitter();
+    @Output()
+    createClicked: EventEmitter<void> = new EventEmitter();
 
     constructor() {
     }
@@ -24,6 +26,10 @@ export class EmployeeListComponent implements OnInit {
 
     onEmployeeSelected(id: number): void {
         this.employeeSelected.emit(id);
+    }
+
+    onCreateButtonClicked(): void {
+        this.createClicked.emit();
     }
 
 }

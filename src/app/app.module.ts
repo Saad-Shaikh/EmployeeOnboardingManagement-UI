@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { TaskDashboardComponent } from './containers/task-dashboard/task-dashboa
 import { HeaderComponent } from './components/header/header.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { EmployeeCreateComponent } from './components/employee-create/employee-create.component';
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 
@@ -27,12 +29,14 @@ import { TeamDetailComponent } from './components/team-detail/team-detail.compon
         TeamDashboardComponent,
         TaskDashboardComponent,
         TeamListComponent,
-        TeamDetailComponent
+        TeamDetailComponent,
+        EmployeeCreateComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

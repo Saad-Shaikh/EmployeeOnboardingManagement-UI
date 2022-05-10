@@ -11,6 +11,8 @@ import { EmployeeDashboardService } from './employee-dashboard.service';
 export class EmployeeDashboardComponent implements OnInit {
     employeeList: EmployeeListDTO[] = [];
     selectedEmployee: EmployeeDetailDTO | null = null;
+    creating: boolean = false;
+    editing: boolean = false;
 
     constructor(private employeeDashboardService: EmployeeDashboardService) { }
 

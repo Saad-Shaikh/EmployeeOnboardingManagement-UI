@@ -1,14 +1,13 @@
 <div class="container">
     <div class="d-flex justify-content-between" style="margin-top: 10px;">
         <h4>Employees</h4>
-        <button class="btn">+</button>
+        <button class="btn" (click)="onCreateButtonClicked()">+</button>
     </div>
     <hr>
     <div class="row">
         <div class="col-xs-12 list-group list-group-flush">
             <a style="cursor: pointer;" class="list-group-item list-group-item-action"
-                *ngFor="let employee of employeeList" [routerLink]="[employee.id]" routerLinkActive="active"
-                (click)="onEmployeeSelected(employee.id)">
+                *ngFor="let employee of employeeList" (click)="onEmployeeSelected(employee.id)">
                 <p class="mb-1">{{ employee.name }}</p>
                 <small>{{ employee.designation }}</small>
                 <!-- <small>{{ designation[employee.designation] }}</small> -->
