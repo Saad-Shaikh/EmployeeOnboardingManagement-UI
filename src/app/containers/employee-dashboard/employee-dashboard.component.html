@@ -4,7 +4,7 @@
             (createClicked)="creating = true"></employee-list>
     </div>
     <div class="col-md-9">
-        <employee-detail [employee]="selectedEmployee" *ngIf="!creating && !editing"></employee-detail>
+        <employee-detail *ngIf="!creating && !editing" [employee]="selectedEmployee"></employee-detail>
         <employee-create *ngIf="creating" [mentorList]="employeeList"></employee-create>
     </div>
 </div>
