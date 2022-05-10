@@ -14,6 +14,8 @@ import { TaskDashboardComponent } from './containers/task-dashboard/task-dashboa
 import { HeaderComponent } from './components/header/header.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { TeamListComponent } from './components/team-list/team-list.component';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
         EmployeeListComponent,
         EmployeeDetailComponent,
         TeamDashboardComponent,
-        TaskDashboardComponent
+        TaskDashboardComponent,
+        TeamListComponent,
+        TeamDetailComponent
     ],
     imports: [
         BrowserModule,

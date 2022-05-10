@@ -1,1 +1,8 @@
-<p>team-dashboard works!</p>
+<div class="row">
+    <div class="col-md-3">
+        <team-list [teamList]="teamList" (teamSelected)="getSelectedTeam($event)"></team-list>
+    </div>
+    <div class="col-md-9">
+        <team-detail [team]="selectedTeam" [teamEmployees]="selectedTeamEmployees"></team-detail>
+    </div>
+</div>

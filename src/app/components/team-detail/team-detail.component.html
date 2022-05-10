@@ -1,0 +1,59 @@
+<div class="container">
+    <div *ngIf="team === null">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Please select a team to view additional details!</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="team">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Team Details</h1>
+                <hr>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>{{ team.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="teamEmployees.length === 0">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>No members in this team</h5>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="teamEmployees.length > 0">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Team Members</h1>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let teamEmployee of teamEmployees; let i = index">
+                                <td>{{ i }}</td>
+                                <td>{{ teamEmployee.employeeListDTO.name }}</td>
+                                <td>{{ teamEmployee.startDate }}</td>
+                                <td>{{ (teamEmployee.endDate == null) ? 'NA' : teamEmployee.endDate }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

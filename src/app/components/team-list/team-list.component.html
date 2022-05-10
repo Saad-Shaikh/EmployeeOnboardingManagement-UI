@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="d-flex justify-content-between" style="margin-top: 10px;">
+        <h4>Teams</h4>
+        <button class="btn">+</button>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 list-group list-group-flush">
+            <a style="cursor: pointer;" class="list-group-item list-group-item-action" *ngFor="let team of teamList"
+                [routerLink]="[team.id]" routerLinkActive="active" (click)="onTeamSelected(team.id)">
+                <p class="mb-1">{{ team.name }}</p>
+            </a>
+        </div>
+    </div>
+</div>

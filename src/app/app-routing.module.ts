@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeDashboardComponent } from './containers/employee-dashboard/employee-dashboard.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { TaskDashboardComponent } from './containers/task-dashboard/task-dashboard.component';
+import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { TeamDashboardComponent } from './containers/team-dashboard/team-dashboard.component';
 
 const routes: Routes = [
@@ -13,7 +14,11 @@ const routes: Routes = [
             { path: ':id', component: EmployeeDetailComponent }
         ]
     },
-    { path: 'teams', component: TeamDashboardComponent },
+    {
+        path: 'teams', component: TeamDashboardComponent, children: [
+            { path: ':id', component: TeamDetailComponent }
+        ]
+    },
     { path: 'tasks', component: TaskDashboardComponent },
 ];
 
