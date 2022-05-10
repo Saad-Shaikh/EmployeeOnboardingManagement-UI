@@ -1,5 +1,5 @@
 import { Designation } from './../../enums/designation.enum';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 
@@ -10,10 +10,19 @@ import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 export class EmployeeListComponent implements OnInit {
     @Input()
     employeeList: EmployeeListDTO[] = [];
+    public designation = Designation;
 
-    constructor() { }
+    @Output()
+    employeeSelected: EventEmitter<number> = new EventEmitter();
+
+    constructor() {
+    }
 
     ngOnInit(): void {
+    }
+
+    onEmployeeSelected(id: number): void {
+        this.employeeSelected.emit(id);
     }
 
 }

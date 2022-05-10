@@ -1,1 +1,64 @@
-<p>employee-detail</p>
+<div class="container">
+    <div *ngIf="employee === null">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Please select an employee to view additional details!</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="employee">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Employee Details</h1>
+                <hr>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>{{ employee.name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date Of Birth</th>
+                            <td>{{ employee.dob }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address</th>
+                            <td>{{ employee.address }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone</th>
+                            <td>{{ employee.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Designation</th>
+                            <td>{{ employee.designation }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Onboarding Start Date</th>
+                            <td>{{ employee.onboardingStartDate }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Onboarding End Date</th>
+                            <td>{{ employee.onboardingEndDate }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Status</th>
+                            <td>{{ employee.status }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mentors</th>
+                            <td>
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let mentor of employee.mentors">
+                                        <span class="float-start">{{ mentor.name}}</span>
+                                        <span class="float-end">({{ mentor.designation }})</span>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

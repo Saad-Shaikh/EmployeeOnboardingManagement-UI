@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
+import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
 import { EmployeeDashboardService } from './employee-dashboard.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { EmployeeDashboardService } from './employee-dashboard.service';
 })
 export class EmployeeDashboardComponent implements OnInit {
     employeeList: EmployeeListDTO[] = [];
+    selectedEmployee: EmployeeDetailDTO | null = null;
 
     constructor(private employeeDashboardService: EmployeeDashboardService) { }
 
@@ -20,4 +22,11 @@ export class EmployeeDashboardComponent implements OnInit {
         );
     }
 
+    getSelectedEmployee(id: number): void {
+        this.employeeDashboardService.getEmployeeById(id).subscribe(
+            (employee: EmployeeDetailDTO) => {
+                this.selectedEmployee = employee;
+            }
+        );
+    }
 }
