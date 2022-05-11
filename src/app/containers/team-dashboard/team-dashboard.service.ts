@@ -1,3 +1,4 @@
+import { TeamCreateDTO } from './../../models/team-create-dto.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -25,5 +26,9 @@ export class TeamDashboardService {
 
     getMembersForTeam(id: number): Observable<TeamHasEmployeesDTO[]> {
         return this.http.get<TeamHasEmployeesDTO[]>(`${TEAM_API}/${id}/members`);
+    }
+
+    createTeam(newTeam: TeamCreateDTO): Observable<TeamNameDTO> {
+        return this.http.post<TeamNameDTO>(TEAM_API, newTeam);
     }
 }

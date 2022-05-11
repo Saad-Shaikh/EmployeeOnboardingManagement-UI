@@ -3,17 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EmployeeDashboardComponent } from './containers/employee-dashboard/employee-dashboard.component';
 import { TaskDashboardComponent } from './containers/task-dashboard/task-dashboard.component';
-import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { TeamDashboardComponent } from './containers/team-dashboard/team-dashboard.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/employees', pathMatch: 'full' },
     { path: 'employees', component: EmployeeDashboardComponent },
-    {
-        path: 'teams', component: TeamDashboardComponent, children: [
-            { path: ':id', component: TeamDetailComponent }
-        ]
-    },
+    { path: 'teams', component: TeamDashboardComponent },
     { path: 'tasks', component: TaskDashboardComponent },
 ];
 

@@ -41,6 +41,7 @@ export class EmployeeDashboardComponent implements OnInit {
         this.employeeDashboardService.createEmployee(newEmployee).subscribe(
             (employee: EmployeeDetailDTO) => {
                 this.creating = false;
+                this.ngOnInit();
                 this.selectedEmployee = employee;
             }
         );

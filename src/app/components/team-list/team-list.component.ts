@@ -13,13 +13,12 @@ export class TeamListComponent implements OnInit {
 
     @Output()
     teamSelected: EventEmitter<number> = new EventEmitter();
+    @Output()
+    createClicked: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit(): void {
     }
 
-    onTeamSelected(id: number): void {
-        this.teamSelected.emit(id);
-    }
 }
