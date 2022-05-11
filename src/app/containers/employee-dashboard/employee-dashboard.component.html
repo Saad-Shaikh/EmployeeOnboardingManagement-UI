@@ -5,6 +5,8 @@
     </div>
     <div class="col-md-9">
         <employee-detail *ngIf="!creating && !editing" [employee]="selectedEmployee"></employee-detail>
-        <employee-create *ngIf="creating" [mentorList]="employeeList"></employee-create>
+        <employee-create *ngIf="creating" [mentorList]="employeeList" (employeeCreated)="onCreateEmployee($event)"
+            (createCancelled)="onCreateCancelled()">
+        </employee-create>
     </div>
 </div>

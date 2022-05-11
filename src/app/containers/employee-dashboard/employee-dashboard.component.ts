@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
+import { EmployeeCreateDTO } from './../../models/employee-create-dto.interface';
 import { EmployeeDashboardService } from './employee-dashboard.service';
 
 @Component({
@@ -17,6 +18,10 @@ export class EmployeeDashboardComponent implements OnInit {
     constructor(private employeeDashboardService: EmployeeDashboardService) { }
 
     ngOnInit(): void {
+        this.fetchEmployees();
+    }
+
+    fetchEmployees(): void {
         this.employeeDashboardService.getEmployeeList().subscribe(
             (employees: EmployeeListDTO[]) => {
                 this.employeeList = employees
@@ -30,5 +35,20 @@ export class EmployeeDashboardComponent implements OnInit {
                 this.selectedEmployee = employee;
             }
         );
+    }
+
+    onCreateEmployee(newEmployee: EmployeeCreateDTO): void {
+        this.employeeDashboardService.createEmployee(newEmployee).subscribe(
+            (employee: EmployeeDetailDTO) => {
+                this.creating = false;
+                this.selectedEmployee = employee;
+            }
+        );
+        this.fetchEmployees();
+    }
+
+    onCreateCancelled(): void {
+        this.creating = false;
+        this.selectedEmployee = null;
     }
 }

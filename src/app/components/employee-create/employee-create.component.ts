@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Designation } from './../../enums/designation.enum';
 import { EmployeeStatus } from './../../enums/employee-status.enum';
 import { EmployeeListDTO } from './../../models/employee-list-dto.interface';
+import { EmployeeCreateDTO } from './../../models/employee-create-dto.interface';
 
 @Component({
     selector: 'employee-create',
@@ -16,6 +17,11 @@ export class EmployeeCreateComponent implements OnInit {
     @Input()
     mentorList: EmployeeListDTO[] = [];
 
+    @Output()
+    employeeCreated: EventEmitter<EmployeeCreateDTO> = new EventEmitter();
+    @Output()
+    createCancelled: EventEmitter<void> = new EventEmitter();
+
     constructor() { }
 
     ngOnInit(): void {
@@ -25,6 +31,20 @@ export class EmployeeCreateComponent implements OnInit {
         for (let status in EmployeeStatus) {
             this.statuses.push(status);
         }
+    }
+
+    createEmployee(employee: EmployeeCreateDTO): void {
+        const mentorIDs = employee.mentoredBy;
+        const mentoredBy: EmployeeListDTO[] = [];
+        for (let mentorID of mentorIDs) {
+            this.mentorList.forEach(mentor => {
+                if (mentor.id === +mentorID) {
+                    mentoredBy.push(mentor);
+                }
+            });
+        }
+        employee.mentoredBy = mentoredBy;
+        this.employeeCreated.emit(employee);
     }
 
 }

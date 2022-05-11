@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
+import { EmployeeCreateDTO } from './../../models/employee-create-dto.interface';
 import { environment } from 'src/environments/environment';
 
 const EMPLOYEE_API: string = `${environment.apiBaseUrl}/employees`
@@ -21,5 +22,9 @@ export class EmployeeDashboardService {
 
     getEmployeeById(id: number): Observable<EmployeeDetailDTO> {
         return this.http.get<EmployeeDetailDTO>(`${EMPLOYEE_API}/${id}`);
+    }
+
+    createEmployee(newEmployee: EmployeeCreateDTO): Observable<EmployeeDetailDTO> {
+        return this.http.post<EmployeeDetailDTO>(EMPLOYEE_API, newEmployee);
     }
 }
