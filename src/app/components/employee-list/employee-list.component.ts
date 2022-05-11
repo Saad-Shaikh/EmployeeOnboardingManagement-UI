@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
-import { Designation } from './../../enums/designation.enum';
 
 @Component({
     selector: 'employee-list',
@@ -11,7 +10,6 @@ import { Designation } from './../../enums/designation.enum';
 export class EmployeeListComponent implements OnInit {
     @Input()
     employeeList: EmployeeListDTO[] = [];
-    public designation = Designation;
 
     @Output()
     employeeSelected: EventEmitter<number> = new EventEmitter();
@@ -22,14 +20,6 @@ export class EmployeeListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    }
-
-    onEmployeeSelected(id: number): void {
-        this.employeeSelected.emit(id);
-    }
-
-    onCreateButtonClicked(): void {
-        this.createClicked.emit();
     }
 
 }
