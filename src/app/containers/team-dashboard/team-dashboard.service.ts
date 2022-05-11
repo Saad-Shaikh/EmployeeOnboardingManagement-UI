@@ -1,3 +1,4 @@
+import { EmployeeListDTO } from './../../models/employee-list-dto.interface';
 import { TeamCreateDTO } from './../../models/team-create-dto.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -30,5 +31,17 @@ export class TeamDashboardService {
 
     createTeam(newTeam: TeamCreateDTO): Observable<TeamNameDTO> {
         return this.http.post<TeamNameDTO>(TEAM_API, newTeam);
+    }
+
+    addMemberToTeam(id: number, employee: EmployeeListDTO): Observable<TeamHasEmployeesDTO[]> {
+        return this.http.post<TeamHasEmployeesDTO[]>(`${TEAM_API}/${id}/members`, employee);
+    }
+
+    removeMemberFromTeam(id: number, employeeId: number): Observable<TeamHasEmployeesDTO[]> {
+        return this.http.delete<TeamHasEmployeesDTO[]>(`${TEAM_API}/${id}/members/${employeeId}`);
+    }
+
+    removeAllMembersFromTeam(id: number): Observable<TeamHasEmployeesDTO[]> {
+        return this.http.delete<TeamHasEmployeesDTO[]>(`${TEAM_API}/${id}/members`);
     }
 }

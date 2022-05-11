@@ -22,18 +22,21 @@
             </div>
         </div>
 
-        <div *ngIf="teamEmployees.length === 0">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h5>No members in this team</h5>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="d-flex mb-3" style="margin-top: 10px;">
+                    <h1 class="me-auto p-2">Team Members</h1>
+                    <button class="btn p-2" style="margin-right: 10px;" (click)="addMemberClicked.emit();">Add
+                        Members</button>
+                    <button class="btn btn-danger p-2" (click)="removeAllMembersFromTeam(team.id)"
+                        [disabled]="teamEmployees.length === 0">Remove All
+                        Members</button>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="teamEmployees.length > 0">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1>Team Members</h1>
+                <hr>
+                <div *ngIf="teamEmployees.length === 0">
+                    <p>No members in this team</p>
+                </div>
+                <div *ngIf="teamEmployees.length > 0">
                     <table class="table table-borderless">
                         <thead>
                             <tr>
@@ -41,6 +44,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Start Date</th>
                                 <th scope="col">End Date</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +53,9 @@
                                 <td>{{ teamEmployee.employeeListDTO.name }}</td>
                                 <td>{{ teamEmployee.startDate }}</td>
                                 <td>{{ (teamEmployee.endDate == null) ? 'NA' : teamEmployee.endDate }}</td>
+                                <td><button class="btn btn-danger"
+                                        (click)="removeMemberFromTeam(team.id, teamEmployee.employeeListDTO.id)">Remove</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

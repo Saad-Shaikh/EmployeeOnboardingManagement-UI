@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { TeamNameDTO } from './../../models/team-name-dto.interface';
 import { TeamHasEmployeesDTO } from './../../models/team-has-employees-dto.interface';
-import { TeamDashboardService } from './team-dashboard.service';
 import { TeamCreateDTO } from './../../models/team-create-dto.interface';
+import { EmployeeListDTO } from './../../models/employee-list-dto.interface';
+
+import { TeamDashboardService } from './team-dashboard.service';
+import { EmployeeDashboardService } from './../employee-dashboard/employee-dashboard.service';
 
 @Component({
     selector: 'team-dashboard',
@@ -11,11 +14,13 @@ import { TeamCreateDTO } from './../../models/team-create-dto.interface';
 })
 export class TeamDashboardComponent implements OnInit {
     teamList: TeamNameDTO[] = [];
-    selectedTeam: TeamNameDTO | null = null;
+    selectedTeam!: TeamNameDTO | null;
     selectedTeamEmployees: TeamHasEmployeesDTO[] = [];
+    selectedTeamNonEmployees: EmployeeListDTO[] = [];
     creating: boolean = false;
+    editing: boolean = false;
 
-    constructor(private teamDashboardService: TeamDashboardService) { }
+    constructor(private teamDashboardService: TeamDashboardService, private employeeDashboardService: EmployeeDashboardService) { }
 
     ngOnInit(): void {
         this.fetchTeams();
@@ -55,5 +60,47 @@ export class TeamDashboardComponent implements OnInit {
     onCreateCancelled(): void {
         this.creating = false;
         this.selectedTeam = null;
+    }
+
+    onAddMember(): void {
+        this.editing = true;
+        this.employeeDashboardService.getEmployeeList().subscribe(
+            (employees: EmployeeListDTO[]) => {
+                this.selectedTeamNonEmployees = employees.filter((employee) => {
+                    let addEmployee: boolean = this.selectedTeamEmployees.length == 0 ? true : false;
+                    this.selectedTeamEmployees.forEach(teamEmployee => {
+                        addEmployee = !(employee.id === teamEmployee.employeeListDTO.id);
+                    });
+                    return addEmployee;
+                });
+            }
+        );
+    }
+
+    onMemberAdded(details: { id: number, employee: EmployeeListDTO }): void {
+        this.teamDashboardService.addMemberToTeam(details.id, details.employee).subscribe(
+
+        );
+    }
+
+    onAddClosed(): void {
+        this.editing = false;
+        this.selectedTeam = null;
+    }
+
+    onRemoveAllMembers(id: number): void {
+        this.teamDashboardService.removeAllMembersFromTeam(id).subscribe(
+            (teamMembers: TeamHasEmployeesDTO[]) => {
+                this.selectedTeamEmployees = teamMembers;
+            }
+        );
+    }
+
+    onRemoveMember(details: { id: number, employeeId: number }): void {
+        this.teamDashboardService.removeMemberFromTeam(details.id, details.employeeId).subscribe(
+            (teamMembers: TeamHasEmployeesDTO[]) => {
+                this.selectedTeamEmployees = teamMembers;
+            }
+        );
     }
 }

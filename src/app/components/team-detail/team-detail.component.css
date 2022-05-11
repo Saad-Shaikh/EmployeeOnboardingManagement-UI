@@ -10,3 +10,12 @@ li {
 p.default-message {
     margin-top: 10px;
 }
+
+.btn {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}
+
+.btn.btn-danger:hover {
+    background-color: red;
+}

@@ -19,6 +19,7 @@ import { EmployeeCreateComponent } from './components/employee-create/employee-c
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { TeamCreateComponent } from './components/team-create/team-create.component';
+import { TeamEditComponent } from './components/team-edit/team-edit.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { TeamCreateComponent } from './components/team-create/team-create.compon
         TeamListComponent,
         TeamDetailComponent,
         EmployeeCreateComponent,
-        TeamCreateComponent
+        TeamCreateComponent,
+        TeamEditComponent
     ],
     imports: [
         BrowserModule,

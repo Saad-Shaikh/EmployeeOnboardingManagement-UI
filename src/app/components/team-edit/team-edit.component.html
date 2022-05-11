@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Add employee to Team</h1>
+    <hr>
+    <form class="row g-3" #teamAddMemberForm="ngForm" (ngSubmit)="addMemberToTeam(teamAddMemberForm.value)">
+
+        <div class="col-12">
+            <label for="employeeId" class="form-label">Employee</label>
+            <select id="employeeId" class="form-select" name="employeeId" ngModel>
+                <option selected>Choose...</option>
+                <option *ngFor="let employee of employees" value="{{employee?.id}}">{{ employee?.name }} ({{
+                    employee?.designation }})</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+                [disabled]="!teamAddMemberForm.valid">Add</button>
+            <button type="button" class="btn btn-danger" (click)="addClosed.emit()">Close</button>
+        </div>
+    </form>
+</div>

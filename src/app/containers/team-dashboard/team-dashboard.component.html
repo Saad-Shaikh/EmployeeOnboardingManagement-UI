@@ -4,8 +4,14 @@
         </team-list>
     </div>
     <div class="col-md-9">
-        <team-detail *ngIf="!creating" [team]="selectedTeam" [teamEmployees]="selectedTeamEmployees"></team-detail>
-        <team-create *ngIf="creating" (teamCreated)="onCreateTeam($event)" (createCancelled)="onCreateCancelled()">
+        <team-detail *ngIf="!creating && !editing" [team]="selectedTeam" [teamEmployees]="selectedTeamEmployees"
+            (addMemberClicked)="onAddMember()" (removeAllMembersClicked)="onRemoveAllMembers($event)"
+            (removeMemberClicked)="onRemoveMember($event)"></team-detail>
+        <team-create *ngIf="creating && !editing" (teamCreated)="onCreateTeam($event)"
+            (createCancelled)="onCreateCancelled()">
         </team-create>
+        <team-edit *ngIf="!creating && editing" [teamId]="selectedTeam?.id" [employees]="selectedTeamNonEmployees"
+            (addMemberClicked)="onMemberAdded($event)" (addClosed)="onAddClosed()">
+        </team-edit>
     </div>
 </div>
