@@ -1,1 +1,10 @@
-<p>task-dashboard works!</p>
+<div class="row">
+    <div class="col-md-3">
+        <task-type-list (taskTypeSelected)="onTaskTypeSelected($event)" (createClicked)="creating = true">
+        </task-type-list>
+    </div>
+    <div class="col-md-9">
+        <task-list *ngIf="!creating" [taskSelected]="taskSelected" [taskList]="taskList"
+            (deleteClicked)="onDeleteTask($event)"></task-list>
+    </div>
+</div>

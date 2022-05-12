@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="!taskSelected">
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="default-message">Please select a task type to view tasks for it!</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="taskSelected">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Task List</h1>
+                <hr>
+                <div *ngIf="taskList.length == 0">
+                    <p>No tasks available for selected task type. Press the '<b>+</b>' button to create one.</p>
+                </div>
+                <div *ngIf="taskList.length > 0">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Task</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of taskList; let i = index">
+                                <td>{{ i }}</td>
+                                <td>{{ task.task }}</td>
+                                <td><button class="btn btn-danger" (click)="deleteClicked.emit(task.id)">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
