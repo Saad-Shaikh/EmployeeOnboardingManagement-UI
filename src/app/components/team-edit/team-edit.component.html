@@ -10,10 +10,11 @@
                 <option *ngFor="let employee of employees" value="{{employee?.id}}">{{ employee?.name }} ({{
                     employee?.designation }})</option>
             </select>
+            <span class="help-block" *ngIf="employees.length == 0">No employees left to add!</span>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
-                [disabled]="!teamAddMemberForm.valid">Add</button>
+                [disabled]="employees.length == 0">Add</button>
             <button type="button" class="btn btn-danger" (click)="addClosed.emit()">Close</button>
         </div>
     </form>
