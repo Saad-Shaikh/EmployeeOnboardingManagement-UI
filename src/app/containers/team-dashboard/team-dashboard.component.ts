@@ -64,15 +64,10 @@ export class TeamDashboardComponent implements OnInit {
 
     onAddMember(): void {
         this.editing = true;
+        const teamEmployeeIDs: number[] = this.selectedTeamEmployees.map(employee => employee.employeeListDTO.id);
         this.employeeDashboardService.getEmployeeList().subscribe(
             (employees: EmployeeListDTO[]) => {
-                this.selectedTeamNonEmployees = employees.filter((employee) => {
-                    let addEmployee: boolean = this.selectedTeamEmployees.length == 0 ? true : false;
-                    this.selectedTeamEmployees.forEach(teamEmployee => {
-                        addEmployee = !(employee.id === teamEmployee.employeeListDTO.id);
-                    });
-                    return addEmployee;
-                });
+                this.selectedTeamNonEmployees = employees.filter((employee) => !teamEmployeeIDs.includes(employee.id));
             }
         );
     }

@@ -26,6 +26,7 @@ export class TeamEditComponent implements OnInit {
 
     addMemberToTeam(member: any): void {
         let _employee = this.employees.find(employee => employee.id === +member.employeeId);
+        this.employees = this.employees.filter(employee => employee.id !== _employee?.id);
         if (_employee && this.teamId) {
             this.addMemberClicked.emit(
                 {
