@@ -11,11 +11,7 @@ p.default-message {
     margin-top: 10px;
 }
 
-.btn {
+.btn.btn-pastel-orange {
     color: #fcf4ef;
     background-color: #fc7061;
-}
-
-.btn.btn-danger:hover {
-    background-color: red;
 }
