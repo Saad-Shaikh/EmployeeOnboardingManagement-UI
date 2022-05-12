@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TaskDetailDTO } from './../../models/task-detail-dto.interface';
+import { TaskCreateDTO } from './../../models/task-create-dto.interface';
 import { TaskDashboardServiceService } from './task-dashboard.service';
 
 @Component({
@@ -26,6 +27,19 @@ export class TaskDashboardComponent implements OnInit {
                 this.taskList = tasks.filter(task => task.taskType == taskType);
             }
         );
+    }
+
+    onCreateTask(newTask: TaskCreateDTO): void {
+        this.taskDashboardService.createTask(newTask).subscribe(
+            (task: TaskDetailDTO) => {
+                this.creating = false;
+                this.ngOnInit();
+            }
+        );
+    }
+
+    onCreateCancelled(): void {
+        this.creating = false;
     }
 
     onDeleteTask(id: number): void {

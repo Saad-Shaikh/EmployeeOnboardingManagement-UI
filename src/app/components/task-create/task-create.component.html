@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Create task</h1>
+    <hr>
+    <form class="row g-3" #taskCreateForm="ngForm" (ngSubmit)="createTask(taskCreateForm.value)">
+        <div class="col-md-5">
+            <label for="task" class="form-label">Task</label>
+            <input type="text" class="form-control" id="task" name="task" ngModel required #task="ngModel">
+            <span class="help-block" *ngIf="!task.valid && task.touched">Please enter a task!</span>
+        </div>
+        <div class="col-md-5">
+            <label for="taskType" class="form-label">Task Type</label>
+            <select id="taskType" class="form-select" name="taskType" ngModel required #taskType="ngModel">
+                <option selected>Choose...</option>
+                <option *ngFor="let taskType of taskTypes" value="{{taskType}}">{{ taskType }}</option>
+            </select>
+            <span class="help-block" *ngIf="!taskType.valid && taskType.touched">Please select a task type!</span>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+                [disabled]="!taskCreateForm.valid">Create</button>
+            <button type="button" class="btn btn-danger" (click)="createCancelled.emit();">Cancel</button>
+        </div>
+    </form>
+</div>

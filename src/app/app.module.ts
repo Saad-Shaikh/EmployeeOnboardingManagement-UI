@@ -22,6 +22,7 @@ import { TeamCreateComponent } from './components/team-create/team-create.compon
 import { TeamEditComponent } from './components/team-edit/team-edit.component';
 import { TaskTypeListComponent } from './components/task-type-list/task-type-list.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskCreateComponent } from './components/task-create/task-create.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
         TeamCreateComponent,
         TeamEditComponent,
         TaskTypeListComponent,
-        TaskListComponent
+        TaskListComponent,
+        TaskCreateComponent
     ],
     imports: [
         BrowserModule,

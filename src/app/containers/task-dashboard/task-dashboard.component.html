@@ -6,5 +6,7 @@
     <div class="col-md-9">
         <task-list *ngIf="!creating" [taskSelected]="taskSelected" [taskList]="taskList"
             (deleteClicked)="onDeleteTask($event)"></task-list>
+        <task-create *ngIf="creating" (taskCreated)="onCreateTask($event)" (createCancelled)="onCreateCancelled()">
+        </task-create>
     </div>
 </div>
