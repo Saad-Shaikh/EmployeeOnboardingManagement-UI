@@ -6,6 +6,11 @@ li {
     background-color: #fcf4ef;
 }
 
+.btn.btn-pastel-orange {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}
+
 p.default-message {
     margin-top: 10px;
 }

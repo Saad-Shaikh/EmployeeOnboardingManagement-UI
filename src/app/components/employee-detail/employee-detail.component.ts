@@ -13,6 +13,8 @@ export class EmployeeDetailComponent implements OnInit {
 
     @Output()
     viewOnboardingClicked: EventEmitter<void> = new EventEmitter();
+    @Output()
+    viewProjectClicked: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 
