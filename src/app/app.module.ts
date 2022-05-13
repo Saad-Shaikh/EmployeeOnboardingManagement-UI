@@ -23,6 +23,7 @@ import { TeamEditComponent } from './components/team-edit/team-edit.component';
 import { TaskTypeListComponent } from './components/task-type-list/task-type-list.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
+import { EmployeeOnboardingViewComponent } from './components/employee-onboarding-view/employee-onboarding-view.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { TaskCreateComponent } from './components/task-create/task-create.compon
         TeamEditComponent,
         TaskTypeListComponent,
         TaskListComponent,
-        TaskCreateComponent
+        TaskCreateComponent,
+        EmployeeOnboardingViewComponent
     ],
     imports: [
         BrowserModule,

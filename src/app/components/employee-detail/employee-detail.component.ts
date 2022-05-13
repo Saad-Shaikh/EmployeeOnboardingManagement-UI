@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
 
@@ -10,6 +10,9 @@ import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface'
 export class EmployeeDetailComponent implements OnInit {
     @Input()
     employee: EmployeeDetailDTO | null = null;
+
+    @Output()
+    viewOnboardingClicked: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 

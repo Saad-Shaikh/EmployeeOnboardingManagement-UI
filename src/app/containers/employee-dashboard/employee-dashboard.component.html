@@ -4,9 +4,14 @@
             (createClicked)="creating = true"></employee-list>
     </div>
     <div class="col-md-9">
-        <employee-detail *ngIf="!creating && !editing" [employee]="selectedEmployee"></employee-detail>
+        <employee-detail *ngIf="!creating && !editing && !onboarding" [employee]="selectedEmployee"
+            (viewOnboardingClicked)="onViewOnboardingClicked()"></employee-detail>
         <employee-create *ngIf="creating" [mentorList]="employeeList" (employeeCreated)="onCreateEmployee($event)"
             (createCancelled)="onCreateCancelled()">
         </employee-create>
+        <employee-onboarding-view *ngIf="onboarding" [employee]="selectedEmployee"
+            [onboardingTasks]="selectedEmployeeObTasks" (taskUpdateClicked)="onTaskUpdateClicked($event)"
+            (backButtonClicked)="onboarding = false">
+        </employee-onboarding-view>
     </div>
 </div>

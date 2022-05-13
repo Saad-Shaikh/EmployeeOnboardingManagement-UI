@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="d-flex justify-content-between" style="margin-top: 10px;">
+                <h1>Onboarding Task List</h1>
+                <button class="btn btn-pastel-orange" title="Assign onboarding tasks"
+                    (click)="assignClicked.emit()">Assign</button>
+            </div>
+            <hr>
+            <div *ngIf="onboardingTasks.length == 0">
+                <p>No onboarding tasks assigned to {{ employee?.name }}. Press the '<b>Assign</b>'
+                    button to assign tasks.</p>
+            </div>
+            <div *ngIf="onboardingTasks.length > 0">
+                <div class="card" style="margin-bottom: 10px;" *ngFor="let onboardingTask of onboardingTasks">
+                    <h5 class="card-header">{{ onboardingTask.task.task }}</h5>
+                    <div class="card-body">
+                        <form id="empObTaskForm_{{onboardingTask.id}}">
+                            <div class="row mb-3">
+                                <label for="remarks_{{onboardingTask.id}}"
+                                    class="col-sm-2 col-form-label">Remarks</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="remarks_{{onboardingTask.id}}"
+                                        name="remarks" [ngModel]="onboardingTask.remarks">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="startDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Start
+                                    Date</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" id="startDate_{{onboardingTask.id}}"
+                                        name="startDate" [ngModel]="onboardingTask.startDate">
+                                </div>
+                                <label for="endDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">End
+                                    Date</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" id="endDate_{{onboardingTask.id}}"
+                                        name="endDate" [ngModel]="onboardingTask.endDate">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="links_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Links</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="links_{{onboardingTask.id}}"
+                                        name="links" [ngModel]="onboardingTask.links">
+                                </div>
+                                <label for="status_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Status</label>
+                                <div class="col-sm-3">
+                                    <select id="status_{{onboardingTask.id}}" class="form-select"
+                                        name="status_{{onboardingTask.id}}" [ngModel]="onboardingTask.status">
+                                        <option selected>Choose...</option>
+                                        <option *ngFor="let taskStatus of taskStatuses" value="{{taskStatus}}">{{
+                                            taskStatus }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-success"
+                                        (click)="updateTask(onboardingTask.id)">Update Task</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button class="btn btn-pastel-orange" (click)="backButtonClicked.emit()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
