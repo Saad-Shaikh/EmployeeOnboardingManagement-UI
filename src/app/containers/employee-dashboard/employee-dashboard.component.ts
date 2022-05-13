@@ -3,8 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
 import { EmployeeCreateDTO } from './../../models/employee-create-dto.interface';
+import { OnboardingTaskAssignDTO } from './../../models/onboarding-task-assign-dto.interface';
 import { OnboardingTaskDetailDTO } from './../../models/onboarding-task-detail-dto.interface';
 import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
+import { TaskDetailDTO } from './../../models/task-detail-dto.interface';
+import { TaskDashboardServiceService } from './../task-dashboard/task-dashboard.service';
 import { EmployeeDashboardService } from './employee-dashboard.service';
 
 @Component({
@@ -15,15 +18,22 @@ export class EmployeeDashboardComponent implements OnInit {
     employeeList: EmployeeListDTO[] = [];
     selectedEmployee: EmployeeDetailDTO | null = null;
     selectedEmployeeObTasks: OnboardingTaskDetailDTO[] = [];
+    unassignedOnboardingTasks: TaskDetailDTO[] = [];
+    private allTasks: TaskDetailDTO[] = [];
 
     creating: boolean = false;
     editing: boolean = false;
     onboarding: boolean = false;
 
-    constructor(private employeeDashboardService: EmployeeDashboardService) { }
+    constructor(private employeeDashboardService: EmployeeDashboardService, private taskDashboardService: TaskDashboardServiceService) { }
 
     ngOnInit(): void {
         this.fetchEmployees();
+        this.taskDashboardService.getAllTasks().subscribe(
+            (tasks: TaskDetailDTO[]) => {
+                this.allTasks = tasks;
+            }
+        );
     }
 
     fetchEmployees(): void {
@@ -74,6 +84,19 @@ export class EmployeeDashboardComponent implements OnInit {
             (onboardingTasks: OnboardingTaskDetailDTO[]) => {
                 this.selectedEmployeeObTasks = onboardingTasks;
                 this.onboarding = true;
+            }
+        );
+    }
+
+    onAssignButtonClicked(): void {
+        const employeeObTasksIds = this.selectedEmployeeObTasks.map((obTask) => obTask.task.id);
+        this.unassignedOnboardingTasks = this.allTasks.filter((task) => (!employeeObTasksIds.includes(task.id)) && task.taskType.toString() == "ONBOARDING");
+    }
+
+    onTaskAssigned(onboardingTaskAssignDTO: OnboardingTaskAssignDTO): void {
+        this.employeeDashboardService.assignEmployeeOnboardingTask(onboardingTaskAssignDTO.id, onboardingTaskAssignDTO).subscribe(
+            (onboardingTasks: OnboardingTaskDetailDTO[]) => {
+                this.selectedEmployeeObTasks.push(...onboardingTasks);
             }
         );
     }

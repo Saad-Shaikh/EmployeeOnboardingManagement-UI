@@ -1,0 +1,13 @@
+h1,
+label {
+    color: #4c5464;
+}
+
+select.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.help-block {
+    color: #4c5464;
+    font-size: small;
+}

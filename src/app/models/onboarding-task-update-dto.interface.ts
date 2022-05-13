@@ -1,5 +1,5 @@
 export interface OnboardingTaskUpdateDTO {
-    id: number;
+    id?: number;
     employeeId?: number;
     remarks: string;
     startDate: Date;

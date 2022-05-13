@@ -73,9 +73,7 @@ export class TeamDashboardComponent implements OnInit {
     }
 
     onMemberAdded(details: { id: number, employee: EmployeeListDTO }): void {
-        this.teamDashboardService.addMemberToTeam(details.id, details.employee).subscribe(
-
-        );
+        this.teamDashboardService.addMemberToTeam(details.id, details.employee).subscribe();
     }
 
     onAddClosed(): void {

@@ -10,8 +10,9 @@
             (createCancelled)="onCreateCancelled()">
         </employee-create>
         <employee-onboarding-view *ngIf="onboarding" [employee]="selectedEmployee"
-            [onboardingTasks]="selectedEmployeeObTasks" (taskUpdateClicked)="onTaskUpdateClicked($event)"
-            (backButtonClicked)="onboarding = false">
+            [onboardingTasks]="selectedEmployeeObTasks" [unassignedOnboardingTasks]="unassignedOnboardingTasks"
+            (assignClicked)="onAssignButtonClicked()" (taskAssigned)="onTaskAssigned($event)"
+            (taskUpdateClicked)="onTaskUpdateClicked($event)" (backButtonClicked)="onboarding = false">
         </employee-onboarding-view>
     </div>
 </div>

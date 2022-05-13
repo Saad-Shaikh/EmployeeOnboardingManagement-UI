@@ -24,6 +24,7 @@ import { TaskTypeListComponent } from './components/task-type-list/task-type-lis
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { EmployeeOnboardingViewComponent } from './components/employee-onboarding-view/employee-onboarding-view.component';
+import { EmployeeOnboardingAssignComponent } from './components/employee-onboarding-assign/employee-onboarding-assign.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { EmployeeOnboardingViewComponent } from './components/employee-onboardin
         TaskTypeListComponent,
         TaskListComponent,
         TaskCreateComponent,
-        EmployeeOnboardingViewComponent
+        EmployeeOnboardingViewComponent,
+        EmployeeOnboardingAssignComponent
     ],
     imports: [
         BrowserModule,

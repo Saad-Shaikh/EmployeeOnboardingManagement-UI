@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Assign tasks to {{ employee?.name }}</h1>
+    <hr>
+    <form class="row g-2" #employeeAssignTasksForm="ngForm"
+        (ngSubmit)="assignTasksToEmployee(employeeAssignTasksForm.value.taskId)">
+
+        <div class="row mb-3">
+            <label for="taskId" class="col-sm-3 col-form-label">Available Tasks</label>
+            <div class="col-sm-9">
+                <select id="taskId" class="form-select" name="taskId" ngModel required>
+                    <option selected>Choose...</option>
+                    <option *ngFor="let task of unassignedOnboardingTasks" value="{{task?.id}}">{{ task.task }}</option>
+                </select>
+                <span class="help-block" *ngIf="unassignedOnboardingTasks.length == 0">No tasks left to assign!</span>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+                [disabled]="unassignedOnboardingTasks.length == 0">Assign</button>
+            <button type="button" class="btn btn-danger" (click)="closeClicked.emit()">Close</button>
+        </div>
+    </form>
+</div>

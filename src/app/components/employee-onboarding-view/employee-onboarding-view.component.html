@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="!assigning">
         <div class="col-xs-12">
             <div class="d-flex justify-content-between" style="margin-top: 10px;">
                 <h1>Onboarding Task List</h1>
                 <button class="btn btn-pastel-orange" title="Assign onboarding tasks"
-                    (click)="assignClicked.emit()">Assign</button>
+                    (click)="assignButtonClicked()">Assign</button>
             </div>
             <hr>
             <div *ngIf="onboardingTasks.length == 0">
@@ -71,4 +71,8 @@
             </div>
         </div>
     </div>
+    <employee-onboarding-assign *ngIf="assigning" [employee]="employee"
+        [unassignedOnboardingTasks]="unassignedOnboardingTasks" (taskAssigned)="taskAssigned.emit($event)"
+        (closeClicked)="assigning = false">
+    </employee-onboarding-assign>
 </div>

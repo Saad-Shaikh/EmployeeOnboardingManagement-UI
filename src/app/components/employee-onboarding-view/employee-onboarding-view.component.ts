@@ -1,7 +1,9 @@
-import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
+import { OnboardingTaskAssignDTO } from './../../models/onboarding-task-assign-dto.interface';
+import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
 import { OnboardingTaskDetailDTO } from './../../models/onboarding-task-detail-dto.interface';
+import { TaskDetailDTO } from './../../models/task-detail-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
 import { TaskStatus } from './../../enums/task-status.enum';
 
@@ -12,14 +14,19 @@ import { TaskStatus } from './../../enums/task-status.enum';
 })
 export class EmployeeOnboardingViewComponent implements OnInit {
     taskStatuses: string[] = [];
+    assigning: boolean = false;
 
     @Input()
     employee: EmployeeDetailDTO | null = null;
     @Input()
     onboardingTasks: OnboardingTaskDetailDTO[] = [];
+    @Input()
+    unassignedOnboardingTasks: TaskDetailDTO[] = [];
 
     @Output()
     assignClicked: EventEmitter<void> = new EventEmitter();
+    @Output()
+    taskAssigned: EventEmitter<OnboardingTaskAssignDTO> = new EventEmitter();
     @Output()
     taskUpdateClicked: EventEmitter<OnboardingTaskUpdateDTO> = new EventEmitter();
     @Output()
@@ -34,7 +41,6 @@ export class EmployeeOnboardingViewComponent implements OnInit {
     }
 
     updateTask(id: number): void {
-        console.log(id);
         const _remarks = (<HTMLInputElement>document.getElementById(`remarks_${id}`)).value;
         const _startDate = (<HTMLInputElement>document.getElementById(`startDate_${id}`)).valueAsDate;
         const _endDate = (<HTMLInputElement>document.getElementById(`endDate_${id}`)).valueAsDate;
@@ -51,6 +57,11 @@ export class EmployeeOnboardingViewComponent implements OnInit {
             status: _status
         };
         this.taskUpdateClicked.emit(taskUpdateDTO);
+    }
+
+    assignButtonClicked(): void {
+        this.assigning = true;
+        this.assignClicked.emit();
     }
 
 }
