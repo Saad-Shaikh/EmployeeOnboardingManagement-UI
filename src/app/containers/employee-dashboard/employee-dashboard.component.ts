@@ -7,8 +7,9 @@ import { OnboardingTaskAssignDTO } from './../../models/onboarding-task-assign-d
 import { OnboardingTaskDetailDTO } from './../../models/onboarding-task-detail-dto.interface';
 import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
 import { TaskDetailDTO } from './../../models/task-detail-dto.interface';
-import { TaskDashboardServiceService } from './../task-dashboard/task-dashboard.service';
 import { EmployeeDashboardService } from './employee-dashboard.service';
+import { TaskDashboardServiceService } from './../task-dashboard/task-dashboard.service';
+import { OnboardingService } from './onboarding.service';
 
 @Component({
     selector: 'employee-dashboard',
@@ -24,8 +25,9 @@ export class EmployeeDashboardComponent implements OnInit {
     creating: boolean = false;
     editing: boolean = false;
     onboarding: boolean = false;
+    project: boolean = false;
 
-    constructor(private employeeDashboardService: EmployeeDashboardService, private taskDashboardService: TaskDashboardServiceService) { }
+    constructor(private employeeDashboardService: EmployeeDashboardService, private taskDashboardService: TaskDashboardServiceService, private onboardingService: OnboardingService) { }
 
     ngOnInit(): void {
         this.fetchEmployees();
@@ -70,7 +72,7 @@ export class EmployeeDashboardComponent implements OnInit {
 
     onViewOnboardingClicked(): void {
         if (this.selectedEmployee) {
-            this.employeeDashboardService.getEmployeeOnboardingTasks(this.selectedEmployee?.id).subscribe(
+            this.onboardingService.getEmployeeOnboardingTasks(this.selectedEmployee?.id).subscribe(
                 (onboardingTasks: OnboardingTaskDetailDTO[]) => {
                     this.selectedEmployeeObTasks = onboardingTasks;
                     this.onboarding = true;
@@ -80,7 +82,7 @@ export class EmployeeDashboardComponent implements OnInit {
     }
 
     onTaskUpdateClicked(obTask: OnboardingTaskUpdateDTO): void {
-        this.employeeDashboardService.updateEmployeeOnboardingTask(obTask).subscribe(
+        this.onboardingService.updateEmployeeOnboardingTask(obTask).subscribe(
             (onboardingTasks: OnboardingTaskDetailDTO[]) => {
                 this.selectedEmployeeObTasks = onboardingTasks;
                 this.onboarding = true;
@@ -94,10 +96,14 @@ export class EmployeeDashboardComponent implements OnInit {
     }
 
     onTaskAssigned(onboardingTaskAssignDTO: OnboardingTaskAssignDTO): void {
-        this.employeeDashboardService.assignEmployeeOnboardingTask(onboardingTaskAssignDTO.id, onboardingTaskAssignDTO).subscribe(
+        this.onboardingService.assignEmployeeOnboardingTask(onboardingTaskAssignDTO.id, onboardingTaskAssignDTO).subscribe(
             (onboardingTasks: OnboardingTaskDetailDTO[]) => {
                 this.selectedEmployeeObTasks.push(...onboardingTasks);
             }
         );
+    }
+
+    onViewProjectClicked(): void {
+
     }
 }

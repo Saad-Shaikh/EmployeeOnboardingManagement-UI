@@ -4,8 +4,9 @@
             (createClicked)="creating = true"></employee-list>
     </div>
     <div class="col-md-9">
-        <employee-detail *ngIf="!creating && !editing && !onboarding" [employee]="selectedEmployee"
-            (viewOnboardingClicked)="onViewOnboardingClicked()"></employee-detail>
+        <employee-detail *ngIf="!creating && !editing && !onboarding && !project" [employee]="selectedEmployee"
+            (viewOnboardingClicked)="onViewOnboardingClicked()" (viewProjectClicked)="onViewProjectClicked()">
+        </employee-detail>
         <employee-create *ngIf="creating" [mentorList]="employeeList" (employeeCreated)="onCreateEmployee($event)"
             (createCancelled)="onCreateCancelled()">
         </employee-create>

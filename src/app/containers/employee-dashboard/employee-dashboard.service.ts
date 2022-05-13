@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
 import { EmployeeCreateDTO } from './../../models/employee-create-dto.interface';
-import { OnboardingTaskDetailDTO } from './../../models/onboarding-task-detail-dto.interface';
-import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
-import { OnboardingTaskAssignDTO } from './../../models/onboarding-task-assign-dto.interface';
 import { environment } from 'src/environments/environment';
 
 const EMPLOYEE_API: string = `${environment.apiBaseUrl}/employees`
@@ -29,17 +26,5 @@ export class EmployeeDashboardService {
 
     createEmployee(newEmployee: EmployeeCreateDTO): Observable<EmployeeDetailDTO> {
         return this.http.post<EmployeeDetailDTO>(EMPLOYEE_API, newEmployee);
-    }
-
-    getEmployeeOnboardingTasks(id: number): Observable<OnboardingTaskDetailDTO[]> {
-        return this.http.get<OnboardingTaskDetailDTO[]>(`${EMPLOYEE_API}/${id}/onboarding`);
-    }
-
-    assignEmployeeOnboardingTask(id: number, onboardingTaskAssignDTO: OnboardingTaskAssignDTO): Observable<OnboardingTaskDetailDTO[]> {
-        return this.http.post<OnboardingTaskDetailDTO[]>(`${EMPLOYEE_API}/${id}/onboarding`, onboardingTaskAssignDTO);
-    }
-
-    updateEmployeeOnboardingTask(obTask: OnboardingTaskUpdateDTO): Observable<OnboardingTaskDetailDTO[]> {
-        return this.http.put<OnboardingTaskDetailDTO[]>(`${EMPLOYEE_API}/${obTask.employeeId}/onboarding/${obTask.id}`, obTask);
     }
 }
