@@ -16,48 +16,52 @@
                     <h5 class="card-header">{{ onboardingTask.task.task }}</h5>
                     <div class="card-body">
                         <form id="empObTaskForm_{{onboardingTask.id}}">
-                            <div class="row mb-3">
-                                <label for="remarks_{{onboardingTask.id}}"
-                                    class="col-sm-2 col-form-label">Remarks</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="remarks_{{onboardingTask.id}}"
-                                        name="remarks" [ngModel]="onboardingTask.remarks">
+                            <div class="col-xs-12">
+                                <div class="row mb-3">
+                                    <label for="remarks_{{onboardingTask.id}}"
+                                        class="col-sm-2 col-form-label">Remarks</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="remarks_{{onboardingTask.id}}"
+                                            name="remarks" [ngModel]="onboardingTask.remarks">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="startDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Start
-                                    Date</label>
-                                <div class="col-sm-4">
-                                    <input type="date" class="form-control" id="startDate_{{onboardingTask.id}}"
-                                        name="startDate" [ngModel]="onboardingTask.startDate">
+                                <div class="row mb-3">
+                                    <label for="startDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Start
+                                        Date</label>
+                                    <div class="col-sm-4">
+                                        <input type="date" class="form-control" id="startDate_{{onboardingTask.id}}"
+                                            name="startDate" [ngModel]="onboardingTask.startDate">
+                                    </div>
+                                    <label for="endDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">End
+                                        Date</label>
+                                    <div class="col-sm-4">
+                                        <input type="date" class="form-control" id="endDate_{{onboardingTask.id}}"
+                                            name="endDate" [ngModel]="onboardingTask.endDate">
+                                    </div>
                                 </div>
-                                <label for="endDate_{{onboardingTask.id}}" class="col-sm-2 col-form-label">End
-                                    Date</label>
-                                <div class="col-sm-4">
-                                    <input type="date" class="form-control" id="endDate_{{onboardingTask.id}}"
-                                        name="endDate" [ngModel]="onboardingTask.endDate">
+                                <div class="row mb-3">
+                                    <label for="links_{{onboardingTask.id}}"
+                                        class="col-sm-2 col-form-label">Links</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="links_{{onboardingTask.id}}"
+                                            name="links" [ngModel]="onboardingTask.links">
+                                    </div>
+                                    <label for="status_{{onboardingTask.id}}"
+                                        class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-3">
+                                        <select id="status_{{onboardingTask.id}}" class="form-select"
+                                            name="status_{{onboardingTask.id}}" [ngModel]="onboardingTask.status">
+                                            <option selected>Choose...</option>
+                                            <option *ngFor="let taskStatus of taskStatuses" value="{{taskStatus}}">{{
+                                                taskStatus }}</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="links_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Links</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="links_{{onboardingTask.id}}"
-                                        name="links" [ngModel]="onboardingTask.links">
-                                </div>
-                                <label for="status_{{onboardingTask.id}}" class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-sm-3">
-                                    <select id="status_{{onboardingTask.id}}" class="form-select"
-                                        name="status_{{onboardingTask.id}}" [ngModel]="onboardingTask.status">
-                                        <option selected>Choose...</option>
-                                        <option *ngFor="let taskStatus of taskStatuses" value="{{taskStatus}}">{{
-                                            taskStatus }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <button type="button" class="btn btn-success"
-                                        (click)="updateTask(onboardingTask.id)">Update Task</button>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-success"
+                                            (click)="updateTask(onboardingTask.id)">Update Task</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
