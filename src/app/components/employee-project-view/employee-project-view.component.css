@@ -1,0 +1,19 @@
+.createLink {
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+h1,
+p {
+    color: #4c5464;
+}
+
+p.default-message {
+    margin-top: 10px;
+}
+
+.btn.btn-pastel-orange {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}

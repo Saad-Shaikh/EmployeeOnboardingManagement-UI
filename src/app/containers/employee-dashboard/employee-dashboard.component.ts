@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { EmployeeListDTO } from '../../models/employee-list-dto.interface';
 import { EmployeeDetailDTO } from './../../models/employee-detail-dto.interface';
@@ -7,27 +8,31 @@ import { OnboardingTaskAssignDTO } from './../../models/onboarding-task-assign-d
 import { OnboardingTaskDetailDTO } from './../../models/onboarding-task-detail-dto.interface';
 import { OnboardingTaskUpdateDTO } from './../../models/onboarding-task-update-dto.interface';
 import { TaskDetailDTO } from './../../models/task-detail-dto.interface';
+import { ProjectAndProjectTasksDTO } from './../../models/project-and-project-tasks-dto.interface';
 import { EmployeeDashboardService } from './employee-dashboard.service';
 import { TaskDashboardServiceService } from './../task-dashboard/task-dashboard.service';
 import { OnboardingService } from './onboarding.service';
+import { ProjectService } from './project.service';
 
 @Component({
     selector: 'employee-dashboard',
     templateUrl: './employee-dashboard.component.html'
 })
 export class EmployeeDashboardComponent implements OnInit {
+    private allTasks: TaskDetailDTO[] = [];
     employeeList: EmployeeListDTO[] = [];
     selectedEmployee: EmployeeDetailDTO | null = null;
     selectedEmployeeObTasks: OnboardingTaskDetailDTO[] = [];
     unassignedOnboardingTasks: TaskDetailDTO[] = [];
-    private allTasks: TaskDetailDTO[] = [];
+    selectedEmployeeProjectDetails: ProjectAndProjectTasksDTO | null = null;
 
     creating: boolean = false;
     editing: boolean = false;
     onboarding: boolean = false;
     project: boolean = false;
 
-    constructor(private employeeDashboardService: EmployeeDashboardService, private taskDashboardService: TaskDashboardServiceService, private onboardingService: OnboardingService) { }
+    constructor(private employeeDashboardService: EmployeeDashboardService, private taskDashboardService: TaskDashboardServiceService,
+        private onboardingService: OnboardingService, private projectService: ProjectService) { }
 
     ngOnInit(): void {
         this.fetchEmployees();
@@ -104,6 +109,19 @@ export class EmployeeDashboardComponent implements OnInit {
     }
 
     onViewProjectClicked(): void {
-
+        if (this.selectedEmployee) {
+            this.projectService.getEmployeeProject(this.selectedEmployee?.id).subscribe(
+                (projectDetails: ProjectAndProjectTasksDTO) => {
+                    this.selectedEmployeeProjectDetails = projectDetails;
+                    this.project = true;
+                },
+                (error: HttpErrorResponse) => {
+                    if (error.error.developerMessage === `Project for Employee with id ${this.selectedEmployee?.id} does not exist!`) {
+                        this.selectedEmployeeProjectDetails = null;
+                        this.project = true;
+                    }
+                }
+            );
+        }
     }
 }

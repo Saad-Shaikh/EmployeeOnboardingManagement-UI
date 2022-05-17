@@ -25,6 +25,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { EmployeeOnboardingViewComponent } from './components/employee-onboarding-view/employee-onboarding-view.component';
 import { EmployeeOnboardingAssignComponent } from './components/employee-onboarding-assign/employee-onboarding-assign.component';
+import { EmployeeProjectViewComponent } from './components/employee-project-view/employee-project-view.component';
+import { EmployeeProjectCreateComponent } from './components/employee-project-create/employee-project-create.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +46,9 @@ import { EmployeeOnboardingAssignComponent } from './components/employee-onboard
         TaskListComponent,
         TaskCreateComponent,
         EmployeeOnboardingViewComponent,
-        EmployeeOnboardingAssignComponent
+        EmployeeOnboardingAssignComponent,
+        EmployeeProjectViewComponent,
+        EmployeeProjectCreateComponent
     ],
     imports: [
         BrowserModule,
