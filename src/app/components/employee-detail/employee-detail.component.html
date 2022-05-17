@@ -1,9 +1,7 @@
 <div class="container">
-    <div *ngIf="employee === null">
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="default-message">Please select an employee to view additional details!</p>
-            </div>
+    <div *ngIf="employee === null" class="row">
+        <div class="col-xs-12 default-message">
+            <p>Please select an employee to view additional details!</p>
         </div>
     </div>
     <div *ngIf="employee">
@@ -64,7 +62,7 @@
                 <button class="btn btn-pastel-orange" style="margin-right: 20px;"
                     (click)="viewOnboardingClicked.emit()">View
                     Onboarding Tasks</button>
-                <button class="btn btn-pastel-orange" (click)="viewProjectClicked.emit()">View Project</button>
+                <button class="btn btn-pastel-orange" (click)="viewProjectClicked.emit()">View Project Details</button>
             </div>
         </div>
     </div>

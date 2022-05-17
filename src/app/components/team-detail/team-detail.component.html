@@ -1,66 +1,64 @@
 <div class="container">
-    <div *ngIf="team === null">
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="default-message">Please select a team to view additional details!</p>
-            </div>
+    <div *ngIf="team == null" class="row">
+        <div class="col-xs-12 default-message">
+            <p>Please select a team to view additional details!</p>
         </div>
     </div>
-    <div *ngIf="team">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>Team Details</h1>
-                <hr>
+</div>
+<div *ngIf="team">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Team Details</h1>
+            <hr>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{ team.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="d-flex mb-3" style="margin-top: 10px;">
+                <h1 class="me-auto p-2">Team Members</h1>
+                <button class="btn btn-pastel-orange p-2" style="margin-right: 10px;"
+                    (click)="addMemberClicked.emit();">Add
+                    Members</button>
+                <button class="btn btn-pastel-orange p-2" (click)="removeAllMembersFromTeam(team.id)"
+                    [disabled]="teamEmployees.length === 0">Remove All
+                    Members</button>
+            </div>
+            <hr>
+            <div *ngIf="teamEmployees.length === 0">
+                <p>No members in this team</p>
+            </div>
+            <div *ngIf="teamEmployees.length > 0">
                 <table class="table table-borderless">
-                    <tbody>
+                    <thead>
                         <tr>
-                            <th scope="row">Name</th>
-                            <td>{{ team.name }}</td>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let teamEmployee of teamEmployees; let i = index">
+                            <td>{{ i }}</td>
+                            <td>{{ teamEmployee.employeeListDTO.name }}</td>
+                            <td>{{ teamEmployee.startDate }}</td>
+                            <td>{{ (teamEmployee.endDate == null) ? 'NA' : teamEmployee.endDate }}</td>
+                            <td><button class="btn btn-danger"
+                                    (click)="removeMemberFromTeam(team.id, teamEmployee.employeeListDTO.id)">Remove</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="d-flex mb-3" style="margin-top: 10px;">
-                    <h1 class="me-auto p-2">Team Members</h1>
-                    <button class="btn btn-pastel-orange p-2" style="margin-right: 10px;"
-                        (click)="addMemberClicked.emit();">Add
-                        Members</button>
-                    <button class="btn btn-pastel-orange p-2" (click)="removeAllMembersFromTeam(team.id)"
-                        [disabled]="teamEmployees.length === 0">Remove All
-                        Members</button>
-                </div>
-                <hr>
-                <div *ngIf="teamEmployees.length === 0">
-                    <p>No members in this team</p>
-                </div>
-                <div *ngIf="teamEmployees.length > 0">
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Start Date</th>
-                                <th scope="col">End Date</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let teamEmployee of teamEmployees; let i = index">
-                                <td>{{ i }}</td>
-                                <td>{{ teamEmployee.employeeListDTO.name }}</td>
-                                <td>{{ teamEmployee.startDate }}</td>
-                                <td>{{ (teamEmployee.endDate == null) ? 'NA' : teamEmployee.endDate }}</td>
-                                <td><button class="btn btn-danger"
-                                        (click)="removeMemberFromTeam(team.id, teamEmployee.employeeListDTO.id)">Remove</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
