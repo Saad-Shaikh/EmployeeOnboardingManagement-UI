@@ -8,7 +8,7 @@
             <span class="help-block" *ngIf="!name.valid && name.touched">Please enter a valid Name!</span>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+            <button type="submit" class="btn btn-pastel-orange" style="margin-right: 20px;"
                 [disabled]="!teamCreateForm.valid">Create</button>
             <button type="button" class="btn btn-danger" (click)="createCancelled.emit();">Cancel</button>
         </div>

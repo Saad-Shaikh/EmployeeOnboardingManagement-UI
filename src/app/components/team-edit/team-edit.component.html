@@ -13,7 +13,7 @@
             <span class="help-block" *ngIf="employees.length == 0">No employees left to add!</span>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+            <button type="submit" class="btn btn-pastel-orange" style="margin-right: 20px;"
                 [disabled]="employees.length == 0">Add</button>
             <button type="button" class="btn btn-danger" (click)="addClosed.emit()">Close</button>
         </div>

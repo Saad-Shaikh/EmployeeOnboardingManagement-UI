@@ -16,7 +16,7 @@
             <span class="help-block" *ngIf="!taskType.valid && taskType.touched">Please select a task type!</span>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
+            <button type="submit" class="btn btn-pastel-orange" style="margin-right: 20px;"
                 [disabled]="!taskCreateForm.valid">Create</button>
             <button type="button" class="btn btn-danger" (click)="createCancelled.emit();">Cancel</button>
         </div>
