@@ -2,3 +2,32 @@
 body {
     background-color: #fcf4ef !important;
 }
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0s;
+}
+
+.header-center {
+    align-self: center;
+}
+
+.inline {
+    display: inline;
+}
+
+.vertical-separator {
+    height: 100vh;
+    border-right: 1px solid #d1cbc7;
+}
+
+.default-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
