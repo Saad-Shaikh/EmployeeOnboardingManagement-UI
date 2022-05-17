@@ -3,6 +3,11 @@ body {
     background-color: #fcf4ef !important;
 }
 
+.btn.btn-pastel-orange {
+    color: #fcf4ef;
+    background-color: #fc7061;
+}
+
 .no-margin {
     margin: 0;
 }
