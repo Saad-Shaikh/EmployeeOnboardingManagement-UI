@@ -11,3 +11,15 @@ input.ng-invalid.ng-touched {
     color: #4c5464;
     font-size: small;
 }
+
+.input-padding {
+    padding: 1em 0;
+}
+
+.btn-padding {
+    padding: 1em 0;
+}
+
+.cancel-top-padding {
+    margin-top: 0.5em;
+}

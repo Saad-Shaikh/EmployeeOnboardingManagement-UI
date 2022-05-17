@@ -1,67 +1,69 @@
 <div class="container">
     <h1>Create employee</h1>
     <hr>
-    <form class="row g-3" #employeeCreateForm="ngForm" (ngSubmit)="createEmployee(employeeCreateForm.value)">
-        <div class="col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" ngModel required #name="ngModel">
-            <span class="help-block" *ngIf="!name.valid && name.touched">Please enter a valid Name!</span>
-        </div>
-        <div class="col-md-6">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="date" class="form-control" id="dob" name="dob" ngModel required #dob="ngModel">
-            <span class="help-block" *ngIf="!dob.valid && dob.touched">Please enter a Date of Birth!</span>
-        </div>
-        <div class="col-12">
-            <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" ngModel required #address="ngModel">
-            <span class="help-block" *ngIf="!address.valid && address.touched">Please enter a valid Address!</span>
-        </div>
-        <div class="col-md-6">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" ngModel required #phone="ngModel">
-            <span class="help-block" *ngIf="!phone.valid && phone.touched">Please enter a valid phone number!</span>
-        </div>
-        <div class="col-md-6">
-            <label for="designation" class="form-label">Designation</label>
-            <select id="designation" class="form-select" name="designation" ngModel required #designation="ngModel">
-                <option selected value="">Choose...</option>
-                <option *ngFor="let designation of designations">{{ designation }}</option>
-            </select>
-            <span class="help-block" *ngIf="!designation.valid && designation.touched">Please select a
-                Designation!</span>
-        </div>
-        <div class="col-md-4">
-            <label for="onboardingStartDate" class="form-label">Onboarding Start Date</label>
-            <input type="date" class="form-control" id="onboardingStartDate" name="onboardingStartDate" ngModel required
-                #obStartDate="ngModel">
-            <span class="help-block" *ngIf="!obStartDate.valid && obStartDate.touched">Please enter an Onboarding start
-                date!</span>
-        </div>
-        <div class="col-md-4">
-            <label for="onboardingEndDate" class="form-label">Onboarding End Date</label>
-            <input type="date" class="form-control" id="onboardingEndDate" name="onboardingEndDate" ngModel>
-        </div>
-        <div class="col-md-4">
-            <label for="status" class="form-label">Status</label>
-            <select id="status" class="form-select" name="status" ngModel required #status="ngModel">
-                <option selected value="">Choose...</option>
-                <option *ngFor="let status of statuses">{{ status }}</option>
-            </select>
-            <span class="help-block" *ngIf="!status.valid && status.touched">Please select a Status!</span>
-        </div>
-        <div class="col-12">
-            <label for="mentoredBy" class="form-label">Mentors</label>
-            <select id="mentoredBy" class="form-select" multiple size="3" name="mentoredBy" ngModel>
-                <option selected>Choose...</option>
-                <option *ngFor="let mentor of mentorList" value="{{mentor?.id}}">{{ mentor?.name }} ({{
-                    mentor?.designation }})</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"
-                [disabled]="!employeeCreateForm.valid">Create</button>
-            <button type="button" class="btn btn-danger" (click)="createCancelled.emit();">Cancel</button>
+    <form class="row" #employeeCreateForm="ngForm" (ngSubmit)="createEmployee(employeeCreateForm.value)">
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-padding">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" ngModel required #name="ngModel">
+                <span class="help-block" *ngIf="!name.valid && name.touched">Please enter a valid Name!</span>
+            </div>
+            <div class="input-padding">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" ngModel required #dob="ngModel">
+                <span class="help-block" *ngIf="!dob.valid && dob.touched">Please enter a Date of Birth!</span>
+            </div>
+            <div class="input-padding">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" ngModel required #address="ngModel">
+                <span class="help-block" *ngIf="!address.valid && address.touched">Please enter a valid Address!</span>
+            </div>
+            <div class="input-padding">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" ngModel required #phone="ngModel">
+                <span class="help-block" *ngIf="!phone.valid && phone.touched">Please enter a valid phone number!</span>
+            </div>
+            <div class="input-padding">
+                <label for="designation" class="form-label">Designation</label>
+                <select id="designation" class="form-select" name="designation" ngModel required #designation="ngModel">
+                    <option selected value="">Choose...</option>
+                    <option *ngFor="let designation of designations">{{ designation }}</option>
+                </select>
+                <span class="help-block" *ngIf="!designation.valid && designation.touched">Please select a
+                    Designation!</span>
+            </div>
+            <div class="input-padding">
+                <label for="onboardingStartDate" class="form-label">Onboarding Start Date</label>
+                <input type="date" class="form-control" id="onboardingStartDate" name="onboardingStartDate" ngModel
+                    required #obStartDate="ngModel">
+                <span class="help-block" *ngIf="!obStartDate.valid && obStartDate.touched">Please enter an Onboarding
+                    start date!</span>
+            </div>
+            <div class="input-padding">
+                <label for="onboardingEndDate" class="form-label">Onboarding End Date</label>
+                <input type="date" class="form-control" id="onboardingEndDate" name="onboardingEndDate" ngModel>
+            </div>
+            <div class="input-padding">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" class="form-select" name="status" ngModel required #status="ngModel">
+                    <option selected value="">Choose...</option>
+                    <option *ngFor="let status of statuses">{{ status }}</option>
+                </select>
+                <span class="help-block" *ngIf="!status.valid && status.touched">Please select a Status!</span>
+            </div>
+            <div class="input-padding">
+                <label for="mentoredBy" class="form-label">Mentors</label>
+                <select id="mentoredBy" class="form-select" multiple size="3" name="mentoredBy" ngModel>
+                    <option selected>Choose...</option>
+                    <option *ngFor="let mentor of mentorList" value="{{mentor?.id}}">{{ mentor?.name }} ({{
+                        mentor?.designation }})</option>
+                </select>
+            </div>
+            <div class="d-grid gap-2 col-xs-12 mx-auto btn-padding">
+                <button type="submit" class="btn btn-primary" [disabled]="!employeeCreateForm.valid">Create</button>
+                <button type="button" class="btn btn-danger cancel-top-padding"
+                    (click)="createCancelled.emit();">Cancel</button>
+            </div>
         </div>
     </form>
 </div>
